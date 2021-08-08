@@ -6,8 +6,8 @@
   "build": {
     "distDir": "../build",
     "devPath": "http://localhost:3000",
-    "beforeDevCommand": "",
-    "beforeBuildCommand": ""
+    "beforeDevCommand": "yarn dev-web",
+    "beforeBuildCommand": "yarn build-web"
   },
   "tauri": {
     "bundle": {
@@ -56,8 +56,13 @@
         "title": "mirin",
         "width": 800,
         "height": 600,
+        "center": true,
         "resizable": true,
-        "fullscreen": false
+        "fullscreen": false,
+        "focus": true,
+        "decorations": false,
+        "transparent": true,
+        "fileDropEnabled": true
       }
     ],
     "security": {
