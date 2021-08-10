@@ -60,6 +60,7 @@ export default defineComponent({
   flex-direction: row;
   height: 28px;
   justify-content: space-between;
+  border-radius: 5px 5px 0 0;
   &.titlebar-style-dark {
     color: #fff;
     background: #2d3135;

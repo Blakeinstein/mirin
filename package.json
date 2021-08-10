@@ -11,10 +11,11 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.0-beta.5",
-    "monaco": "^1.201704190613.0",
+    "monaco-editor": "^0.26.1",
     "monaco-vim": "^0.1.16",
-    "reset-css": "^5.0.1",
-    "vue": "^3.0.5"
+    "vue": "^3.0.5",
+    "vue-grid-layout": "^3.0.0-beta1",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.0.0-beta.6",
