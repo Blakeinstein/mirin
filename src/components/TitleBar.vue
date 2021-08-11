@@ -118,31 +118,29 @@ export default defineComponent({
       width: 12px;
       background-color: #dcdcdc;
       border-color: #d1d1d1;
-      &.macButtonClose {
+      transition: all 0.1s ease-in-out;
+      &Close {
         background-color: #fc615d;
       }
-      &.macButtonMinimize {
+      &Minimize {
         background-color: #fdbc40;
       }
-      &.macButtonMaximize {
+      &Maximize {
         background-color: #34c749;
       }
       svg {
         display: block;
         visibility: hidden;
       }
+      &:active {
+        filter: opacity(0.8);
+        box-shadow: inset 0 0 4px #0003;
+      }
     }
     &:hover {
       .macButton {
         svg {
           visibility: visible;
-        }
-      }
-    }
-    &:active {
-      .macButton {
-        svg {
-          filter: grayscale(0.6);
         }
       }
     }
