@@ -18,21 +18,22 @@
 <script lang="ts">
 import * as monaco from 'monaco-editor'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
-import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
 import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 
 // @ts-ignore
 self.MonacoEnvironment = {
   // @ts-ignore
   getWorker(_, label) {
-    if (label === 'html' || label === 'handlebars' || label === 'razor') {
-      return new htmlWorker()
-    }
     if (label === 'typescript' || label === 'javascript') {
       return new tsWorker()
     }
     return new editorWorker()
   }
+}
+
+interface EditorData {
+  editor: monaco.editor.IStandaloneCodeEditor | null,
+  editorOpts: monaco.editor.IStandaloneEditorConstructionOptions | monaco.editor.IEditorOptions
 }
 
 export default {
@@ -43,9 +44,15 @@ export default {
       default: {"x":0,"y":0,"w":7,"h":10,"i":"0"}
     }
   },
-  data () {
+  data (): EditorData {
     return {
-      editor: null as unknown as monaco.editor.IStandaloneCodeEditor
+      editor: null,
+      editorOpts: {}
+    }
+  },
+  watch: {
+    editorOpts (newVal: monaco.editor.IEditorOptions) {
+      this.editor?.updateOptions(newVal)
     }
   },
   computed: {
@@ -54,17 +61,19 @@ export default {
     },
   },
   mounted () {
-    this.editor = monaco.editor.create(this.$refs.editor as HTMLElement, {
-      value: "function hello() {\n\talert('Hello world!');\n}",
-      language: 'javascript',
-      minimap: {
-        enabled: false,
-      },
-      readOnly: false,
-      theme: 'dark',
-      automaticLayout: true,
-      scrollBeyondLastLine: false
-    })
+    this.editor = monaco.editor.create(this.$refs.editor as HTMLElement, 
+      {
+        value: "function hello() {\n\talert('Hello world!');\n}",
+        language: 'javascript',
+        minimap: {
+          enabled: false,
+        },
+        readOnly: false,
+        theme: 'vs-dark',
+        automaticLayout: true,
+        scrollBeyondLastLine: false
+      }
+    )
   }
 }
 </script>
