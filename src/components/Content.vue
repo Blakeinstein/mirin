@@ -73,7 +73,6 @@ export default {
   },
   methods: {
     updateLayout(newLayout: Record<string, number>[]): void {
-      console.log(newLayout);
       layoutStorage.set(newLayout);
     }
   }
