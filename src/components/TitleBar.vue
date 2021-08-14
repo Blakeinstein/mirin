@@ -1,5 +1,5 @@
 <template>
-  <div class="titlebar titlebar-style-dark" data-tauri-drag-region>
+  <div :class="'titlebar titlebar-style-'+theme" data-tauri-drag-region>
     <div class="titlebar-buttons">
       <div class="macButton macButtonClose" @click="close">
         <svg name="TitleBarCloseMac" width="12" height="12" viewBox="0 0 12 12">
@@ -34,10 +34,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { preference } from 'vue-preferences'
 import { appWindow } from '@tauri-apps/api/window'
 
 export default defineComponent({
   name: 'TitleBar',
+  computed: {
+    theme: preference('activeTheme', { defaultValue: 'dark', reactive: false }) as () => string
+  },
   methods: {
     close() {
       appWindow.close()
@@ -67,7 +71,7 @@ export default defineComponent({
   }
   &.titlebar-style-light {
     color: #2c2c2c;
-    background: #f6f6f6;
+    background: #e5e6eb;
   }
   .titlebar-header {
     display: flex;

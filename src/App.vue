@@ -12,8 +12,6 @@ export default defineComponent({
   components: {
     Content,
     TitleBar,
-  },
-  methods: {
   }
 })
 </script>

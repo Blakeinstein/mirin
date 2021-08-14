@@ -1,16 +1,17 @@
 <template>
-  <n-config-provider id="content" :theme="getTheme">
+  <n-config-provider id="content" :class="theme" :theme="getTheme">
     <grid-layout
-      :layout="layout"
+      v-model:layout="layout"
       :col-num="10"
       :col-size="20"
       :is-resizable="true"
       :use-css-transforms="true"
       :auto-size="false"
-      :row-height="rowHeight"
+      :row-height="10"
       :vertical-compact="false"
       :prevent-collision="true"
       :margin="margin"
+      @layout-updated="updateLayout"
       class="content-grid"
     >
       <editor
@@ -37,10 +38,21 @@
 
 <script lang="ts">
 import { NConfigProvider, darkTheme} from 'naive-ui'
-import { mapGetters } from 'vuex'
+import { preference } from 'vue-preferences'
 
 import Editor from './Editor.vue'
 import SidePanel from './SidePanel.vue'
+
+const layoutStorage = preference('paneLayout',
+  { 
+    defaultValue: [
+      {"x":0,"y":0,"w":7,"h":10,"i":"0"},
+      {"x":7,"y":0,"w":3,"h":10,"i":"1"},
+    ],
+    reactive: false
+  }
+);
+
 export default {
   components: {
     Editor,
@@ -49,18 +61,21 @@ export default {
   },
   data () {
     return {
-      layout: [
-        {"x":0,"y":0,"w":7,"h":10,"i":"0"},
-        {"x":7,"y":0,"w":3,"h":10,"i":"1"},
-      ],
-      margin: [5, 5]
+      margin: [3, 3],
+      layout: layoutStorage.get()
     }
   },
   computed: {
+    theme: preference('activeTheme', { defaultValue: 'dark', reactive: false }) as () => string,
     getTheme(): typeof darkTheme | null {
-      return this.theme == 'dark' ? darkTheme : null
-    },
-    ...mapGetters('theme', ['theme'])
+      return this.theme === 'dark' ? darkTheme : null; 
+    }
+  },
+  methods: {
+    updateLayout(newLayout: Record<string, number>[]): void {
+      console.log(newLayout);
+      layoutStorage.set(newLayout);
+    }
   }
 }
 </script>
@@ -74,8 +89,8 @@ export default {
   height: 100%;
 }
 .vue-grid-item {
-  max-height: calc(100% - 10px);
-  min-height: calc(100% - 10px);
+  max-height: calc(100% - 6px);
+  min-height: calc(100% - 6px);
 }
 .drag-handle {
   position: absolute;

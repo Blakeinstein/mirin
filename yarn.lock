@@ -522,11 +522,6 @@
     "@vue/compiler-dom" "3.2.0-beta.7"
     "@vue/shared" "3.2.0-beta.7"
 
-"@vue/devtools-api@^6.0.0-beta.11":
-  version "6.0.0-beta.15"
-  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.0.0-beta.15.tgz#ad7cb384e062f165bcf9c83732125bffbc2ad83d"
-  integrity sha512-quBx4Jjpexo6KDiNUGFr/zF/2A4srKM9S9v2uHgMXSU//hjgq1eGzqkIFql8T9gfX5ZaVOUzYBP3jIdIR3PKIA==
-
 "@vue/reactivity@3.1.5":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.1.5.tgz#dbec4d9557f7c8f25c2635db1e23a78a729eb991"
@@ -4256,6 +4251,11 @@ vue-grid-layout@^3.0.0-beta1:
     element-resize-detector "^1.2.1"
     mitt "^2.1.0"
 
+vue-preferences@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vue-preferences/-/vue-preferences-3.0.0.tgz#c9ff1244ca583ef7f6a3d4b37bb631ff708e52ca"
+  integrity sha512-Qv8rutGI1kqdMq6mVJXL1CNkLScWGrOvJ4IdsWXzm8f6ohac9mzicRx7ANM6P2XHP4sD0EzUXwhFKw0ZjPmorw==
+
 vue-tsc@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/vue-tsc/-/vue-tsc-0.2.2.tgz#e7fd5e5c789beb31840ad26082cfc8bb6356e733"
@@ -4283,13 +4283,6 @@ vueuc@^0.4.9:
     seemly "^0.3.1"
     vdirs "^0.1.4"
     vooks "^0.2.4"
-
-vuex@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.0.2.tgz#f896dbd5bf2a0e963f00c67e9b610de749ccacc9"
-  integrity sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==
-  dependencies:
-    "@vue/devtools-api" "^6.0.0-beta.11"
 
 wcwidth@^1.0.1:
   version "1.0.1"
