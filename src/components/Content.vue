@@ -43,11 +43,19 @@ import { preference } from 'vue-preferences'
 import Editor from './Editor.vue'
 import SidePanel from './SidePanel.vue'
 
-const layoutStorage = preference('paneLayout',
+interface ILayout {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  i: number;
+}
+
+const layoutStorage = preference<ILayout[]>('paneLayout',
   { 
     defaultValue: [
-      {"x":0,"y":0,"w":7,"h":10,"i":"0"},
-      {"x":7,"y":0,"w":3,"h":10,"i":"1"},
+      {x: 0, y: 0, w: 7, h: 10, i: 0},
+      {x: 7, y: 0, w: 3, h: 10, i: 1},
     ],
     reactive: false
   }
@@ -66,14 +74,14 @@ export default {
     }
   },
   computed: {
-    theme: preference('activeTheme', { defaultValue: 'dark', reactive: false }) as () => string,
+    theme: preference('activeTheme', { defaultValue: 'dark', reactive: false }),
     getTheme(): typeof darkTheme | null {
-      return this.theme === 'dark' ? darkTheme : null; 
+      return this.theme === 'dark' ? darkTheme : null
     }
   },
   methods: {
-    updateLayout(newLayout: Record<string, number>[]): void {
-      layoutStorage.set(newLayout);
+    updateLayout(newLayout: ILayout[]): void {
+      layoutStorage.set(newLayout)
     }
   }
 }
