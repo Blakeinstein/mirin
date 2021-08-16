@@ -11,7 +11,8 @@
     drag-allow-from=".drag-handle"
     drag-ignore-from="#editor"
   >
-    <div class="editor-container"><div class="drag-handle" /><div ref="editor" id="editor" /></div>
+    <n-skeleton height="100%" width="100%" round v-show="!editorLoaded" />
+    <div class="editor-container" v-show="editorLoaded" ><div class="drag-handle" /><div ref="editor" id="editor" /></div>
   </grid-item>
 </template>
 
@@ -19,6 +20,7 @@
 import * as monaco from 'monaco-editor'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
+import nSkeleton from 'naive-ui'
 
 // @ts-ignore
 self.MonacoEnvironment = {
@@ -32,11 +34,15 @@ self.MonacoEnvironment = {
 }
 
 interface EditorData {
-  editor: monaco.editor.IStandaloneCodeEditor | null,
-  editorOpts: monaco.editor.IStandaloneEditorConstructionOptions | monaco.editor.IEditorOptions
+  editor: monaco.editor.IStandaloneCodeEditor | null;
+  editorOpts: monaco.editor.IStandaloneEditorConstructionOptions | monaco.editor.IEditorOptions;
+  editorLoaded: boolean;
 }
 
 export default {
+  components: {
+    nSkeleton
+  },
   props: {
     layout: {
       type: Object,
@@ -47,7 +53,8 @@ export default {
   data (): EditorData {
     return {
       editor: null,
-      editorOpts: {}
+      editorOpts: {},
+      editorLoaded: false
     }
   },
   watch: {
@@ -74,6 +81,10 @@ export default {
         scrollBeyondLastLine: false
       }
     )
+    let eventListner = this.editor.onDidScrollChange(() => {
+      eventListner.dispose()
+      this.editorLoaded = true
+    })
   }
 }
 </script>
