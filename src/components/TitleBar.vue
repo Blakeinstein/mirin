@@ -40,7 +40,7 @@ import { appWindow } from '@tauri-apps/api/window'
 export default defineComponent({
   name: 'TitleBar',
   computed: {
-    theme: preference('activeTheme', { defaultValue: 'dark', reactive: false }) as () => string
+    theme: preference('activeTheme', { defaultValue: 'dark' })
   },
   methods: {
     close() {
@@ -56,7 +56,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .titlebar {
   position: relative;
   width: 100%;
@@ -67,7 +67,7 @@ export default defineComponent({
   border-radius: 5px 5px 0 0;
   &.titlebar-style-dark {
     color: #fff;
-    background: #2d3135;
+    background: #101014;
   }
   &.titlebar-style-light {
     color: #2c2c2c;
@@ -94,7 +94,7 @@ export default defineComponent({
       align-content: center;
       align-self: center;
       width: auto;
-      height: 16px;
+      height: 20px;
     }
   }
   .titlebar-icon ~ .titlebar-name {

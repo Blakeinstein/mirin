@@ -29,5 +29,15 @@ declare module 'vue-grid-layout' {
   }
 }
 
-
 type coords = [number, number];
+
+type ComponentRender = () => ReturnType<typeof import('vue').h>
+
+type VueIcon = import("vue").DefineComponent<{}, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, import("vue").EmitsOptions, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{} & {}>, {}>
+interface menuItem {
+  type?: string
+  label?: (() => ComponentRender) | string ;
+  key: string,
+  icon?: ComponentRender;
+  children?: menuItem[]
+}

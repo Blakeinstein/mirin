@@ -16,6 +16,7 @@
     >
       <editor
         :layout="layout[0]"
+        :theme="theme"
       />
       <grid-item
         :i="layout[1].i"
@@ -74,7 +75,7 @@ export default {
     }
   },
   computed: {
-    theme: preference('activeTheme', { defaultValue: 'dark', reactive: false }),
+    theme: preference('activeTheme', { defaultValue: 'dark' }),
     getTheme(): typeof darkTheme | null {
       return this.theme === 'dark' ? darkTheme : null
     }
@@ -89,8 +90,13 @@ export default {
 
 <style lang="scss">
 #content {
-  background: #e5e6eb;
   border-radius: 0 0 5px 5px;
+  &.dark {
+    background: #101014;
+  }
+  &.light {
+    background: #e5e6eb;
+  }
 }
 .content-grid {
   height: 100%;
@@ -105,10 +111,16 @@ export default {
   left: 2px;
   height: 5px;
   width: 5px;
-  border: 2px solid #0008;
+  border: 2px solid #fff8;
   border-right: 0px;
   border-bottom: 0px;
   z-index: 3000;
+}
+.light .drag-handle {
+  border-color: #0008;
+}
+.dark .vue-resizable-handle {
+  filter: invert(1);
 }
 .relative {
   position: relative;

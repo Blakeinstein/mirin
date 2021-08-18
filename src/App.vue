@@ -1,5 +1,12 @@
 <template>
-    <title-bar />
+    <title-bar>
+      <template #icon>
+        <img src="../src-tauri/icons/128x128.png">
+      </template>
+      <template #title>
+        <span class="app-title">Mirin</span>
+      </template>
+    </title-bar>
     <content />
 </template>
 
@@ -59,5 +66,10 @@ body {
   display: grid;
   position: relative;
   grid-template-rows: 28px auto;
+}
+
+.app-title {
+  font-weight: bold;
+  text-transform: capitalize;
 }
 </style>

@@ -11,8 +11,11 @@
     drag-allow-from=".drag-handle"
     drag-ignore-from="#editor"
   >
-    <n-skeleton height="100%" width="100%" round v-show="!editorLoaded" />
-    <div class="editor-container" v-show="editorLoaded" ><div class="drag-handle" /><div ref="editor" id="editor" /></div>
+    <div class="editor-container" >
+      <div class="drag-handle" />
+      <div ref="editor" id="editor" v-show="editorLoaded" />
+      <n-skeleton height="100%" width="100%" round v-show="!editorLoaded" />
+    </div>
   </grid-item>
 </template>
 
@@ -20,7 +23,7 @@
 import * as monaco from 'monaco-editor'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
-import nSkeleton from 'naive-ui'
+import { NSkeleton } from 'naive-ui'
 
 // @ts-ignore
 self.MonacoEnvironment = {
@@ -41,13 +44,17 @@ interface EditorData {
 
 export default {
   components: {
-    nSkeleton
+    NSkeleton
   },
   props: {
     layout: {
       type: Object,
       required: true,
       default: {"x":0,"y":0,"w":7,"h":10,"i":"0"}
+    },
+    theme: {
+      type: String,
+      default: 'dark'
     }
   },
   data (): EditorData {
@@ -60,6 +67,11 @@ export default {
   watch: {
     editorOpts (newVal: monaco.editor.IEditorOptions) {
       this.editor?.updateOptions(newVal)
+    },
+    theme (val: string) {
+      this.editor?.updateOptions({
+        theme: val == 'dark' ? 'vs-dark' : ''
+      })
     }
   },
   computed: {
@@ -76,7 +88,7 @@ export default {
           enabled: false,
         },
         readOnly: false,
-        theme: 'vs-dark',
+        theme: this.theme == 'dark' ? 'vs-dark' : '',
         automaticLayout: true,
         scrollBeyondLastLine: false
       }

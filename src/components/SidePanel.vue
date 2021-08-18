@@ -1,19 +1,27 @@
 <template>
   <div id="side-panel">
+    <navbar />
+    <n-divider> Terminal </n-divider>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { NDivider } from 'naive-ui'
+import navbar from './sidepanel/navbar.vue'
 
+export default {
+  components: {
+    NDivider,
+    navbar
+  }
 }
+
 </script>
 
 <style scoped>
 #side-panel {
   height: 100%;
-  background: #e5e6eb;
-  border: 1px solid #0008;
   position: relative;
+  padding: 1em;
 }
 </style>

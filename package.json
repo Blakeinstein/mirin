@@ -10,7 +10,8 @@
     "build": "tauri build"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1.0.0-beta.5",
+    "@tauri-apps/api": "^1.0.0-beta.6",
+    "@vicons/ionicons5": "^0.11.0",
     "monaco-editor": "^0.26.1",
     "monaco-vim": "^0.1.16",
     "vue": "^3.0.5",
@@ -18,7 +19,7 @@
     "vue-preferences": "^3.0.0"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.0.0-beta.6",
+    "@tauri-apps/cli": "^1.0.0-beta.8",
     "@vitejs/plugin-vue": "^1.3.0",
     "@vue/compiler-sfc": "^3.0.5",
     "naive-ui": "^2.15.11",
