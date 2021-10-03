@@ -90,7 +90,8 @@ export default {
         readOnly: false,
         theme: this.theme == 'dark' ? 'vs-dark' : '',
         automaticLayout: true,
-        scrollBeyondLastLine: false
+        scrollBeyondLastLine: false,
+        wordWrap: 'bounded',
       }
     )
     let eventListner = this.editor.onDidScrollChange(() => {
